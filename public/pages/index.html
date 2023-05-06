@@ -10,16 +10,28 @@
     <script src="/src/index.js"></script>
 </head>
 <body>
-    <div class="card">
-        <p class="greet">Hey There, <br> Welcome To <span class="blue">ChatCord</span></p>
-        <div class="username-part">
-            <input class="username" type="name" placeholder="Username">
-            <p class="info"></p>
+    <div class="card home-card active">
+        <p class="card-heading">Hey There, <br> Welcome To <span class="blue">ChatCord</span></p>
+        <div class="card-content">
+            <input class="username-field" type="name" placeholder="Username">
+            <p class="info-para"></p>
         </div>
         <div class="card-bottom">
             <button onclick="createRoom()">Create Room</button>
             <button onclick="joinRoom()">Join Room</button>
         </div>
     </div>
+    <div class="card room-creation-card">
+        <p class="card-heading">Creating Your Own <br> <span class="blue">ChatCord</span> Room</p>
+        <p class="room-id">Room ID: <span class="blue id"></span></p>
+        <div class="card-content">
+            <input class="room-name-field" type="name" placeholder="Name">
+            <p class="info-para"></p>
+        </div>
+        <div class="card-bottom">
+            <button onclick="createRoom()">Create Room</button>
+        </div>
+    </div>
+    <div class="card joining-room-card"></div>
 </body>
 </html>

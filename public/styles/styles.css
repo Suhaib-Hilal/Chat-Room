@@ -11,10 +11,45 @@
     --card-background-color: #18191c;
     --input-background-color: #2f3136;
     --input-text-color: #54575d;
+    --shadow-color: #1b1d1f;
     --white: #ffffff;
     --blue: #5865f2;
     --grey: #2f3136;
-    --shadow-color: #1b1d1f;
+}
+
+.blue {
+    color: #5865f2;
+}
+
+.card {
+    background-color: var(--card-background-color);
+    width: 300px;
+    height: auto;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 8px var(--shadow-color);
+}
+
+.card:not(.active) {
+    display: none;
+}
+
+.room-id {
+    font-size: 0.8em;
+}
+
+button {
+    padding: 6px 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--blue);
+    color: var(--white);
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: small;
 }
 
 body {
@@ -28,72 +63,45 @@ body {
     align-items: center;
 }
 
-.card {
-    background-color: var(--card-background-color);
-    width: 300px;
-    height: auto;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    margin: 16px;
-    text-align: center;
-    box-shadow: 8px 8px 8px var(--shadow-color);
-}
-
-.username {
+.username-field, .room-name-field {
     background-color: var(--input-background-color);
     border: none;
     width: 280px;
     height: 32px;
-    padding: 6px;
-    border-radius: 2px;
+    padding: 12px;
+    border-radius: 4px;
     color: var(--white);
     font-family: "Poppins";
 }
 
-.username::placeholder {
+.username-field::placeholder, .room-name-field::placeholder {
     color: var(--input-text-color);
     font-family: "Poppins";
 }
 
-.username:focus {
+.username-field:focus, .room-name-field:focus {
     outline: none;
 }
 
-.greet {
-    margin: 12px;
+.card-heading {
+    margin: 12px 12px 0 12px;
     font-weight: 600;
-}
-
-.blue {
-    color: #5865f2;
 }
 
 .card-bottom {
     background-color: var(--grey);
     width: 100%;
-    padding: 10px;
+    padding: 10px 14px;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-.info {
-    color: red;
-    font-size: smaller;
-    text-align: left;
-}
-
-button {
-    padding: 6px 8px;
-    border: none;
-    border-radius: 2px;
-    background-color: var(--blue);
-    color: var(--white);
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: small;
+.info-para {
+    padding-left: 2px;
+    padding-top: 2px;
+    color: tomato;
+    font-size: 0.7em;
+    text-align: center;
 }
