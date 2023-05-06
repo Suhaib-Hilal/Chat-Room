@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="time; URL=new_url"/>
     <title>Chat Room</title>
     <link rel="stylesheet" href="../styles/styles.css">
+    <script src="/src/index.js"></script>
 </head>
 <body>
     <div class="card">
         <p class="greet">Hey There, <br> Welcome To <span class="blue">ChatCord</span></p>
-        <input class="username" type="name" placeholder="Username">
+        <div class="username-part">
+            <input class="username" type="name" placeholder="Username">
+            <p class="info"></p>
+        </div>
         <div class="card-bottom">
-            <button>Create Room</button>
-            <button>Join Room</button>
+            <button onclick="createRoom()">Create Room</button>
+            <button onclick="joinRoom()">Join Room</button>
         </div>
     </div>
 </body>
