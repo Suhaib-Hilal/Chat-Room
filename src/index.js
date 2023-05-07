@@ -36,6 +36,14 @@ function changeActive(target) {
     }
 }
 
+function copyRoomId() {
+    let id = document.querySelector(".id").innerHTML
+
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+      return navigator.clipboard.writeText(id);
+    return Promise.reject('The Clipboard API is not available.');
+};
+
 function createRoom() {
 
     // Check if the username is valid

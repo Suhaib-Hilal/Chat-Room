@@ -43,10 +43,20 @@
     font-size: 0.8em;
 }
 
+.room-id-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
 .field-heading {
     text-align: left;
     font-size: 0.8em;
     color: var(--input-field-heading-color);
+}
+
+.copy-img {
+    width: 16px;
+    margin-bottom: 2px;
 }
 
 button {

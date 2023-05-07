@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="time; URL=new_url"/>
+    <meta http-equiv="refresh" content="time; URL=new_url" />
     <title>Chat Room</title>
     <link rel="stylesheet" href="../styles/styles.css">
     <script src="/src/index.js"></script>
 </head>
+
 <body>
     <div class="card home-card active">
         <p class="card-heading">Hey There, <br> Welcome To <span class="blue">ChatCord</span></p>
@@ -24,7 +26,18 @@
     </div>
     <div class="card room-creation-card">
         <p class="card-heading">Creating Your Own <br> <span class="blue">ChatCord</span> Room</p>
-        <p class="room-id">Room ID: <span class="blue id"></span></p>
+        <div class="room-id-wrapper">
+            <p class="room-id">
+                Room ID: <span class="blue id"></span>
+            </p>
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" fill="none" shape-rendering="geometricPrecision"
+                style="color:currentcolor" class="copy-img" onclick="copyRoomId()">
+                <path
+                    d="M8 17.929H6c-1.105 0-2-.912-2-2.036V5.036C4 3.91 4.895 3 6 3h8c1.105 0 2 .911 2 2.036v1.866m-6 .17h8c1.105 0 2 .91 2 2.035v10.857C20 21.09 19.105 22 18 22h-8c-1.105 0-2-.911-2-2.036V9.107c0-1.124.895-2.036 2-2.036z"
+                    class="copy-img"></path>
+            </svg>
+        </div>
         <div class="card-content">
             <p class="field-heading">Enter a name for your chat room</p>
             <input class="room-name-field" type="name" placeholder="e.g. ChatHub, ProgrammingHub, e.t.c.">
@@ -51,4 +64,5 @@
         </div>
     </div>
 </body>
+
 </html>
