@@ -41,26 +41,21 @@
         <div class="card-content">
             <p class="field-heading">Enter a name for your chat room</p>
             <input class="room-name-field" type="name" placeholder="e.g. ChatHub, ProgrammingHub, e.t.c.">
-            <p class="info-para"></p>
+            <p class="room-name-info-para"></p>
         </div>
         <div class="card-bottom">
-            <button>Create Room</button>
+            <button onclick="generateRoom()">Create Room</button>
         </div>
     </div>
     <div class="card joining-room-card">
         <p class="card-heading">Joining An Existing <br><span class="blue">ChatCord</span> Room</p>
         <div class="card-content">
-            <p class="field-heading">Enter a name of the room</p>
-            <input class="room-name-field" type="name" placeholder="Name">
-            <p class="info-para"></p>
-        </div>
-        <div class="card-content">
             <p class="field-heading">Enter the ID of the room</p>
-            <input class="room-name-field" placeholder="ID">
-            <p class="info-para"></p>
+            <input class="room-id-field" placeholder="Room ID">
+            <p class="room-id-info-para"></p>
         </div>
         <div class="card-bottom">
-            <button>Join Room</button>
+            <button onclick="enterRoom()">Join Room</button>
         </div>
     </div>
 </body>

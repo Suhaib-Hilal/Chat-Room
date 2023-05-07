@@ -16,6 +16,7 @@
     --white: #ffffff;
     --blue: #5865f2;
     --grey: #2f3136;
+    --green: #57F287;
 }
 
 .blue {
@@ -50,7 +51,7 @@
 
 .field-heading {
     text-align: left;
-    font-size: 0.8em;
+    font-size: 0.75em;
     color: var(--input-field-heading-color);
 }
 
@@ -81,7 +82,7 @@ body {
     align-items: center;
 }
 
-.username-field, .room-name-field {
+.username-field, .room-name-field, .room-id-field {
     background-color: var(--input-field-background-color);
     border: none;
     width: 280px;
@@ -92,12 +93,12 @@ body {
     font-family: "Poppins";
 }
 
-.username-field::placeholder, .room-name-field::placeholder {
+.username-field::placeholder, .room-name-field::placeholder, .room-id-field::placeholder {
     color: var(--input-field-text-color);
     font-family: "Poppins";
 }
 
-.username-field:focus, .room-name-field:focus {
+.username-field:focus, .room-name-field:focus, .room-id-field:focus {
     outline: none;
 }
 
@@ -116,7 +117,7 @@ body {
     justify-content: space-around;
 }
 
-.info-para {
+.info-para, .room-name-info-para, .room-id-info-para {
     padding-left: 2px;
     padding-top: 2px;
     color: tomato;
