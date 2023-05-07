@@ -13,7 +13,8 @@
     <div class="card home-card active">
         <p class="card-heading">Hey There, <br> Welcome To <span class="blue">ChatCord</span></p>
         <div class="card-content">
-            <input class="username-field" type="name" placeholder="Username">
+            <p class="field-heading">Enter a username</p>
+            <input class="username-field" type="name" placeholder="e.g. Charlie, Bob, e.t.c.">
             <p class="info-para"></p>
         </div>
         <div class="card-bottom">
@@ -25,13 +26,29 @@
         <p class="card-heading">Creating Your Own <br> <span class="blue">ChatCord</span> Room</p>
         <p class="room-id">Room ID: <span class="blue id"></span></p>
         <div class="card-content">
-            <input class="room-name-field" type="name" placeholder="Name">
+            <p class="field-heading">Enter a name for your chat room</p>
+            <input class="room-name-field" type="name" placeholder="e.g. ChatHub, ProgrammingHub, e.t.c.">
             <p class="info-para"></p>
         </div>
         <div class="card-bottom">
-            <button onclick="createRoom()">Create Room</button>
+            <button>Create Room</button>
         </div>
     </div>
-    <div class="card joining-room-card"></div>
+    <div class="card joining-room-card">
+        <p class="card-heading">Joining An Existing <br><span class="blue">ChatCord</span> Room</p>
+        <div class="card-content">
+            <p class="field-heading">Enter a name of the room</p>
+            <input class="room-name-field" type="name" placeholder="Name">
+            <p class="info-para"></p>
+        </div>
+        <div class="card-content">
+            <p class="field-heading">Enter the ID of the room</p>
+            <input class="room-name-field" placeholder="ID">
+            <p class="info-para"></p>
+        </div>
+        <div class="card-bottom">
+            <button>Join Room</button>
+        </div>
+    </div>
 </body>
 </html>

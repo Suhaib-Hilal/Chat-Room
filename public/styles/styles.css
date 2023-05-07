@@ -9,8 +9,9 @@
 :root {
     --background-color: #202225;
     --card-background-color: #18191c;
-    --input-background-color: #2f3136;
-    --input-text-color: #54575d;
+    --input-field-background-color: #2f3136;
+    --input-field-text-color: #54575d;
+    --input-field-heading-color: #aeb0b3;
     --shadow-color: #1b1d1f;
     --white: #ffffff;
     --blue: #5865f2;
@@ -28,6 +29,7 @@
     border-radius: 6px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     text-align: center;
     box-shadow: 0px 0px 8px var(--shadow-color);
@@ -39,6 +41,12 @@
 
 .room-id {
     font-size: 0.8em;
+}
+
+.field-heading {
+    text-align: left;
+    font-size: 0.8em;
+    color: var(--input-field-heading-color);
 }
 
 button {
@@ -64,7 +72,7 @@ body {
 }
 
 .username-field, .room-name-field {
-    background-color: var(--input-background-color);
+    background-color: var(--input-field-background-color);
     border: none;
     width: 280px;
     height: 32px;
@@ -75,7 +83,7 @@ body {
 }
 
 .username-field::placeholder, .room-name-field::placeholder {
-    color: var(--input-text-color);
+    color: var(--input-field-text-color);
     font-family: "Poppins";
 }
 

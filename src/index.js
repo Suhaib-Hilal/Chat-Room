@@ -24,20 +24,41 @@ function randomNumber(length = 6) {
     );
 }
 
+function changeActive(target) {
+    let children = document.body.children
+    for (let index = 0; index <= children.length; index++) {
+        let child = children[index];
+        if (child.classList.contains("active")) {
+            child.classList.remove("active")
+            target.classList.add("active")
+            return
+        }
+    }
+}
+
 function createRoom() {
 
     // Check if the username is valid
     if (isValidUsername()) {
-        let homeCard = document.querySelector(".home-card")
         let roomCreationCard = document.querySelector(".room-creation-card")
         let roomId = document.querySelector(".room-id > .id")
 
         // Activate the room creation card
-        homeCard.classList.remove("active")
-        roomCreationCard.classList.add("active")
+        changeActive(roomCreationCard)
 
         // Generate a unique room id and add it to the website
         id = randomNumber()
         roomId.innerHTML = id
+    }
+}
+
+function joinRoom() {
+    
+    // Check if the username is valid
+    if (isValidUsername()) {
+        let roomEntranceCard = document.querySelector(".joining-room-card")
+
+        // Activate the room entrance card
+        changeActive(roomEntranceCard)
     }
 }
