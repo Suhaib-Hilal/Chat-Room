@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@200;400&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+:root {
+    --background-color: #202225;
+    --card-background-color: #18191c;
+    --input-field-background-color: #2f3136;
+    --input-field-text-color: #54575d;
+    --input-field-heading-color: #aeb0b3;
+    --shadow-color: #1b1d1f;
+    --white: #ffffff;
+    --blue: #5865f2;
+    --grey: #2f3136;
+    --green: #57F287;
+}
+
+.chat {
+    background-color: var(--background-color);
+    color: #d9d9da;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-between;
+    font-family: "Poppins";
+    font-size: 20px;
+}
+
+
+.roomName {
+    color: var(--blue);
+    font-weight: 600;
+}
+
+.heading {
+    background-color: var(--input-field-background-color);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.footer {
+    display: flex;
+    margin: 20px;
+    gap: 10px;
+    justify-content: space-evenly;
+}
+
+.messageField {
+    outline: none;
+    border: none;
+    flex: 1;
+    color: var(--white);
+    background-color: var(--input-field-background-color);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.sendBtn {
+    outline: none;
+    border: none;
+    color: var(--input-field-heading-color);
+    background-color: var(--input-field-background-color);
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.message {
+    display: flex;
+    gap: 8px;
+}

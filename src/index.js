@@ -1,4 +1,6 @@
-let rooms = {}
+import { addRoom, db, getRoom } from "./firebase"
+import Room from "./models/room"
+import { initiateChat } from "./chat"
 
 // Check if the usernam is valid
 function isValidUsername() {
@@ -37,13 +39,6 @@ function isValidRoomName() {
         roomNameField.focus()
     }
 
-    // Check if the room name is alreay taken
-    else if (rooms[roomNameField.value] != undefined) {
-        roomNameInfoPara.innerHTML = "Room name already taken"
-        roomNameInfoPara.style.color = "tomato"
-        roomNameField.focus()
-    }
-
     // Check if the user has entered a valid name
     else if (roomNameField.value.length < 4) {
         roomNameInfoPara.innerHTML = "Username must contain atleast 4 letters"
@@ -57,104 +52,107 @@ function isValidRoomName() {
     }
 }
 
-function isValidRoomId() {
-    let roomIdField = document.querySelector(".room-id-field")
-    let roomIdInfoPara = document.querySelector(".room-id-info-para")
-
-    // Check if the user has entered an id
-    if (roomIdField.value == "") {
-        roomIdInfoPara.innerHTML = "Room ID is invalid"
-        roomIdInfoPara.style.color = "tomato"
-        roomIdField.focus()
-    }
-
-    // Check if the room name is alreay taken
-    else if (Object.values(rooms).includes(roomIdField.value)) {
-        roomIdInfoPara.innerHTML = "Room ID is valid"
-        roomIdInfoPara.style.color = "var(--green)"
-        return true
-    }
-    else {
-        console.log(Object.entries(rooms))
-        roomIdInfoPara.innerHTML = "Room ID is invalid"
-        roomIdInfoPara.style.color = "tomato"
-        roomIdField.focus()
-    }
-}
-
 // Generate an id to create a room
-function randomNumber(length = 6) {
+function getRandomID(length = 6) {
     return Math.floor(
-        Math.pow(10, length-1) + Math.random() * (Math.pow(10, length) - Math.pow(10, length-1) - 1)
+        Math.pow(10, length - 1) + Math.random() * (Math.pow(10, length) - Math.pow(10, length - 1) - 1)
     );
 }
 
 function changeActive(target) {
-    let children = document.body.children
-    for (let index = 0; index <= children.length; index++) {
-        let child = children[index];
+    for (let child of document.body.children) {
         if (child.classList.contains("active")) {
-            child.classList.remove("active")
-            target.classList.add("active")
-            return
+            child.classList.remove("active");
+            break;
         }
     }
+
+    target.classList.add("active")
 }
 
 // Copy the rood id to the clipboard
 function copyRoomId() {
     let id = document.querySelector(".id").innerHTML
-
-    if (navigator && navigator.clipboard && navigator.clipboard.writeText)
-      return navigator.clipboard.writeText(id);
-    return Promise.reject('The Clipboard API is not available.');
+    return navigator.clipboard.writeText(id);
 };
 
-function createRoom() {
+// Create a new room
+function showRoomCreationModel() {
 
     // Check if the username is valid
-    if (isValidUsername()) {
-        let roomCreationCard = document.querySelector(".room-creation-card")
-        let roomId = document.querySelector(".room-id > .id")
+    if (!isValidUsername()) return;
 
-        // Activate the room creation card
-        changeActive(roomCreationCard)
+    let roomCreationCard = document.querySelector(".room-creation-card")
+    let roomId = document.querySelector(".id")
 
-        // Generate a unique room id and add it to the website
-        id = randomNumber()
-        roomId.innerHTML = id
-    }
+    // Activate the room creation card
+    changeActive(roomCreationCard)
+
+    // Generate a unique room id and add it to the website
+    roomId.innerText = getRandomID()
 }
 
-function generateRoom() {
+async function generateRoom() {
     let roomNameField = document.querySelector(".room-name-field")
-    let roomId = document.querySelector(".room-id > .id")
+    let roomId = document.querySelector(".id").textContent
 
     // Check if the room name is valid
-    if (isValidRoomName()) {
-
-        // Add the room data to the rooms object
-        rooms[roomNameField.value] = roomId.innerHTML.toString()
-    }
+    if (!isValidRoomName()) return;
+    const room = new Room(roomNameField.value, roomId)
+    await addRoom(room)
+    gotoChat(room);
 }
 
+// Join an existing room
 function joinRoom() {
     let roomEntranceCard = document.querySelector(".joining-room-card")
 
     // Check if the username is valid
-    if (isValidUsername()) {
+    if (!isValidUsername()) return;
 
-        // Activate the room entrance card
-        changeActive(roomEntranceCard)
-    }
+    // Activate the room entrance card
+    changeActive(roomEntranceCard)
+
 }
 
-function enterRoom() {
-    let roomId = document.querySelector(".room-id > .id")
-    console.log(Object.values(rooms))
+async function enterExistingRoom() {
+    let roomId = document.querySelector(".room-id-field").value
+    const roomInfoPara = document.querySelector(".room-id-info-para");
 
-    // Check if the room id is valid
-    if (isValidRoomId()) {
-
+    try {
+        let room = await getRoom(roomId);
+        roomInfoPara.style.color = "var(--green)"
+        roomInfoPara.textContent = "Room exist! Joining...";
+        gotoChat(room)
+    } catch (e) {
+        roomInfoPara.style.color = "red"
+        roomInfoPara.textContent = "Room does not exist";
     }
+
 }
+
+function gotoChat(room) {
+    const username = document.querySelector(".username-field").value;
+    setTimeout(() => {
+        changeActive(document.querySelector(".chat"))
+        initiateChat(room, username)
+    }, 1000);
+}
+
+// Room creation
+const createRoomBtn = document.querySelector(".createRoomBtn")
+createRoomBtn.addEventListener("click", showRoomCreationModel)
+
+const generateRoomBtn = document.querySelector(".generateRoomBtn");
+generateRoomBtn.addEventListener("click", generateRoom);
+
+// Room enterance
+const joinRoomBtn = document.querySelector(".joinRoomBtn");
+joinRoomBtn.addEventListener("click", joinRoom);
+
+const enterRoomBtn = document.querySelector(".enterRoomBtn");
+enterRoomBtn.addEventListener("click", enterExistingRoom);
+
+// Room id copy
+const copyRoomIdBtn = document.querySelector(".copyRoomIdBtn");
+copyRoomIdBtn.addEventListener("click", copyRoomId);
