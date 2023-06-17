@@ -1,12 +1,15 @@
 import { sendMessageToFirebase, subscribeToMessages } from "./firebase";
 import Message from "./models/message"
+import copyRoomId from "./index"
 
 let room;
 let username;
 
 const namePara = document.querySelector(".roomName");
+namePara.addEventListener("click", copyRoomId)
 
 const messageView = document.querySelector(".messageView");
+
 const sendBtn = document.querySelector(".sendBtn");
 sendBtn.addEventListener("click", sendMessage)
 
@@ -20,6 +23,7 @@ export async function initiateChat(_room, _username) {
     const unsub = await subscribeToMessages(room.id, (snap) => {
         messages = []
         snap.forEach((messageDoc) => {
+            console.log(messageDoc.data())
             const message = Message.fromMap(messageDoc.data());
             messages.push(message);
         })
@@ -30,7 +34,10 @@ export async function initiateChat(_room, _username) {
 
 function updateMessages() {
     let html = ""
+    console.log(messages)
     for (const message of messages) {
+        console.log(message)
+
         html += `<div class="message">
                     <p class="message-head">
                         <span class="author">${message.author}</span>
@@ -44,10 +51,13 @@ function updateMessages() {
 }
 
 function sendMessage() {
+    const messageField = document.querySelector(".messageField");
     const message = new Message(
         username,
-        document.querySelector(".messageField").value
+        messageField.value,
+        Date.now().toString()
     );
 
     sendMessageToFirebase(room.id, message);
+    messageField.value = "";
 }

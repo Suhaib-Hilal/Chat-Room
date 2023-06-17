@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, addDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import Room from "./models/room"
 
 const firebaseConfig = {
@@ -31,13 +31,11 @@ export async function getRoom(roomId) {
 }
 
 export async function subscribeToMessages(roomId, callback) {
-    console.log(roomId)
-    const query = collection(db, "rooms", roomId, "messages");
-    const unsub = onSnapshot(query, callback);
+    const unsub = onSnapshot(query(collection(db, "rooms", roomId, "messages"), orderBy("id")), callback);
 
     return unsub;
 }
 
 export async function sendMessageToFirebase(roomId, message) {
-    await addDoc(collection(db, "rooms", roomId, "messages"), message.toMap());
+    await setDoc(doc(db, "rooms", roomId, "messages", message.id), message.toMap());
 }

@@ -32,9 +32,9 @@
     font-size: 20px;
 }
 
-
 .roomName {
-    color: var(--blue);
+    color: rgb(240, 195, 110);
+    text-decoration: underline;
     font-weight: 600;
 }
 
@@ -72,7 +72,26 @@
     padding: 8px;
 }
 
+.messageView {
+    display: flex;
+    flex-direction: column;
+    /* j */
+}
+
 .message {
     display: flex;
-    gap: 8px;
+    gap: 6px;
+    padding: 2px 0 2px 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.author {
+    color: rgb(240, 195, 110);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.message-content {
+    color: rgb(59, 203, 196);
 }

@@ -71,7 +71,7 @@ function changeActive(target) {
 }
 
 // Copy the rood id to the clipboard
-function copyRoomId() {
+export default function copyRoomId() {
     let id = document.querySelector(".id").innerHTML
     return navigator.clipboard.writeText(id);
 };
@@ -156,3 +156,6 @@ enterRoomBtn.addEventListener("click", enterExistingRoom);
 // Room id copy
 const copyRoomIdBtn = document.querySelector(".copyRoomIdBtn");
 copyRoomIdBtn.addEventListener("click", copyRoomId);
+
+const roomName = document.querySelector(".roomName");
+roomName.addEventListener("click", copyRoomId);
